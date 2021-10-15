@@ -20,6 +20,7 @@
 
     //Escribir en el fichero
     $file = fopen("ejercicio1fichero.txt", "a");
+    //PHP_EOL -> salto de linea
     fwrite($file, "\nKimia,160,60,black,white,brown,1998,female,NS,Human");
     fclose($file);
     ?>
