@@ -11,14 +11,14 @@
     //Recuperando la informacion del fichero
     $file = fopen("locations.csv", "r");
     do {
-        echo fgetcsv($file);
+        echo fgetcsv( $file,  0,  ";", "'");
         echo "<br>";
     } while (fgetcsv($file) != false);
     fclose($file);
 
     $file = fopen("locations.csv", "a+");
-    /*$arrayDatos= array('Kimia','23','Sevilla');
-    fputscsv($file,$arrayDatos);*/
+    $arrayDatos= array('Kimia','23,Sevilla');
+    fputcsv();
 
     
     ?>
