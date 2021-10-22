@@ -58,13 +58,11 @@
         } else {
             echo "false";
         }
-
-        
-
-        ?></table>
+        ?>
+    </table>
 
 
-<table border="1px">
+    <table border="1px">
         <tr>
             <th>id</th>
             <th>origen</th>
@@ -82,11 +80,10 @@
         } else {
             echo "false";
         }
+        ?>
+    </table>
 
-
-        ?></table>
-
-<table border="1px">
+    <table border="1px">
         <tr>
             <th>id</th>
             <th>origen</th>
@@ -99,15 +96,15 @@
         $result = mysqli_query($mysqli, "SELECT * FROM `vuelos`");
         if ($result != false) {
             while ($fila = mysqli_fetch_row($result)) {
-                echo "<tr> <td>" . $fila[0] . "</td> <td>" . $fila[1] . "</td><td>" . $fila[2]. "</td><td>" . $fila[3] . "</td><td>" . $fila[4] . "</td><td>" . $fila[5] . "</td> </tr>";
+                echo "<tr> <td>" . $fila[0] . "</td> <td>" . $fila[1] . "</td><td>" . $fila[2] . "</td><td>" . $fila[3] . "</td><td>" . $fila[4] . "</td><td>" . $fila[5] . "</td> </tr>";
             }
         } else {
             echo "false";
         }
 
         mysqli_close($mysqli);
-
-        ?></table>
+        ?>
+    </table>
 
 </body>
 
