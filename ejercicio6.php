@@ -15,9 +15,7 @@
     {
         @$mysqli = mysqli_connect('localhost', 'developer', 'developer', 'agenciaviajes');
         $error = mysqli_connect_errno();
-        if ($error == "") {
-            echo "Conectado<br>";
-        } else {
+        if ($error != "") {
             echo "error" . $error . " " . mysqli_connect_error();
         }
         return $mysqli;
@@ -83,7 +81,7 @@
             mysqli_stmt_execute($stmt);
             mysqli_stmt_bind_result($stmt, $id, $origen, $destino, $fecha, $companya, $modeloAvion);
             while (mysqli_stmt_fetch($stmt)) {
-                echo "Origen: " . $origen . " Destino: " . $destino . " Fcecha: " . $fecha . " Compania: " . $companya . " Modelo: " . $modeloAvion;
+                echo "Origen: " . $origen . " Destino: " . $destino . " Fcecha: " . $fecha . " Compania: " . $companya . " Modelo: " . $modeloAvion . "<br>";
             }
             mysqli_stmt_close($stmt);
         }
