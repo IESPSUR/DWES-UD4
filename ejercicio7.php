@@ -24,7 +24,7 @@
     function creaVuelo($origen, $destino, $fecha, $companya, $modeloAvion)
     {
         $mysqli = creaConexion();
-        $sql = "INSERT into vuelos values(null,'Madrid','Barc','2021-10-23 14:02:54','sx','sxsx')";
+        $sql = "INSERT into vuelos values(null,$origen, $destino, $fecha, $companya, $modeloAvion)";
         $result = $mysqli->query($sql);
         $mysqli->close();
         return $result;

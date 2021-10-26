@@ -9,10 +9,10 @@
 <body>
     <?php 
     include_once "ejercicio7.php";
-    creaVuelo("MiLugar","MiLugar2", "2021-10-23 14:02:54","sds","dfdsf");
+    creaVuelo("Poll","MiLugar2", "2021-10-23 14:02:54","sds","dfdsf");
     modificaDestino(3,"LELE");
     modificaCompanya(8,"NPMMMM");
-    eliminaVuelo(4);
+    eliminaVuelo(1);
     extraeVuelos();
     ?>
 </body>
