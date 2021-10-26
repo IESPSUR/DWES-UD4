@@ -8,10 +8,10 @@
 </head>
 <body>
     <?php 
-    include_once "ejercicio6.php";
+    include_once "ejercicio7.php";
     creaVuelo("MiLugar","MiLugar2", "2021-10-23 14:02:54","sds","dfdsf");
-    modificaDestino(4,"PEPE");
-    modificaCompanya(3,"NPM");
+    modificaDestino(3,"LELE");
+    modificaCompanya(8,"NPMMMM");
     eliminaVuelo(4);
     extraeVuelos();
     ?>
