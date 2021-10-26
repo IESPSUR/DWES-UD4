@@ -13,7 +13,7 @@
 
     function creaConexion()
     {
-        $mysqli = new mysqli('localhost', 'developer', 'developer', 'agenciaviajes');
+        $mysqli = new mysqli('localhost', 'root', 'root', 'agenciaviajes');
         $error = $mysqli->connect_error;
         if ($error != "") {
             echo "error" . $error . " " . mysqli_connect_error();
@@ -23,12 +23,19 @@
 
     function creaVuelo($origen, $destino, $fecha, $companya, $modeloAvion)
     {
+        $retorno = false;
         $mysqli = creaConexion();
-        $sql = "INSERT into vuelos values(null,$origen, $destino, $fecha, $companya, $modeloAvion)";
-        $result = $mysqli->query($sql);
+        $sql = "INSERT into vuelos values(null,?,?,?,?,?);";
+        $mysqli->stmt_init();
+        if ($stmt = $mysqli->prepare($sql)) {
+            $stmt->bind_param('sssss', $origen, $destino, $fecha, $companya, $modeloAvion);
+            $retorno = $stmt->execute();
+            $stmt->close();
+        }
         $mysqli->close();
-        return $result;
+        return $retorno;
     }
+
     function modificaDestino($id, $destino)
     {
         $retorno = false;
@@ -76,22 +83,22 @@
 
     function extraeVuelos()
     {
-        $retorno = false;
+        $datos = [];
         $mysqli = creaConexion();
         $sql = "SELECT * from vuelos;";
         $mysqli->stmt_init();
         if ($stmt = $mysqli->prepare($sql)) {
-            $retorno = $stmt->execute();
-            if ($retorno == true) {
-                $stmt->bind_result($id, $origen, $destino, $fecha, $companya, $modeloAvion);
-                while ($stmt->fetch()) {
-                    echo "Origen: " . $origen . " Destino: " . $destino . " Fcecha: " . $fecha . " Compania: " . $companya . " Modelo: " . $modeloAvion . "<br>";
-                }
+            $stmt->execute();
+            $stmt->bind_result($id, $origen, $destino, $fecha, $companya, $modeloAvion);
+            $i = 0;
+            while ($stmt->fetch()) {
+                $datos[$i] = array($origen, $destino, $fecha, $companya, $modeloAvion);
+                $i++;
             }
         }
         mysqli_stmt_close($stmt);
         mysqli_close($mysqli);
-        return $retorno;
+        return $datos;
     }
 
 

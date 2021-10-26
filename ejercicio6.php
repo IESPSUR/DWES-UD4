@@ -13,7 +13,7 @@
 
     function creaConexion()
     {
-        @$mysqli = mysqli_connect('localhost', 'developer', 'developer', 'agenciaviajes');
+        @$mysqli = mysqli_connect('localhost', 'root', 'root', 'agenciaviajes');
         $error = mysqli_connect_errno();
         if ($error != "") {
             echo "error" . $error . " " . mysqli_connect_error();
@@ -82,22 +82,22 @@
 
     function extraeVuelos()
     {
-        $retorno = true;
+        $datos = [];
         $mysqli = creaConexion();
         $sql = "SELECT * from vuelos;";
         $consulta = mysqli_stmt_init($mysqli);
         if ($stmt = mysqli_prepare($mysqli, $sql)) {
-            $retorno = mysqli_stmt_execute($stmt);
-            if ($retorno) {
-                mysqli_stmt_bind_result($stmt, $id, $origen, $destino, $fecha, $companya, $modeloAvion);
-                while (mysqli_stmt_fetch($stmt)) {
-                    echo "Origen: " . $origen . " Destino: " . $destino . " Fcecha: " . $fecha . " Compania: " . $companya . " Modelo: " . $modeloAvion . "<br>";
-                }
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $id, $origen, $destino, $fecha, $companya, $modeloAvion);
+            $i = 0;
+            while (mysqli_stmt_fetch($stmt)) {
+                $datos[$i] = array($origen, $destino, $fecha, $companya, $modeloAvion);
+                $i++;
             }
-            mysqli_stmt_close($stmt);
-            return $retorno;
         }
+        mysqli_stmt_close($stmt);
         mysqli_close($mysqli);
+        return $datos;
     }
 
 
