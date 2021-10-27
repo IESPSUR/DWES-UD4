@@ -13,7 +13,7 @@
 
     function creaConexion()
     {
-        @$mysqli = mysqli_connect('localhost', 'root', 'root', 'agenciaviajes');
+        @$mysqli = mysqli_connect('localhost', 'developer', 'developer', 'agenciaviajes');
         $error = mysqli_connect_errno();
         if ($error != "") {
             echo "error" . $error . " " . mysqli_connect_error();
