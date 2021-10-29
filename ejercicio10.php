@@ -31,7 +31,7 @@
         if ($con->lastInsertId() <= 0 || $lastID1== $lastID2 ) {
             $fallo = false;
         }
-        $sql = "INSERT into turista values('María','Ehsani','Dolati','RM','12134')";
+        $sql = "INSERT into turista values(null,'María','Ehsani','Dolati','RM','12134')";
         $con->exec($sql);
         $lastID3= $con->lastInsertId();
         if ($con->lastInsertId() <= 0  || $lastID2== $lastID3) {
