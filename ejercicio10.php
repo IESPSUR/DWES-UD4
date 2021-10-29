@@ -21,17 +21,20 @@
         $fallo = true;
         $sql = "INSERT into turista values(null,'Kimia','Ehsani','Dolati','RM','12134')";
         $con->exec($sql);
-        if ($con->lastInsertId() <= 0) {
+        $lastID1= $con->lastInsertId();
+        if ($con->lastInsertId() <= 0 ) {
             $fallo = false;
         }
         $sql = "INSERT into turista values(null,'Jack','Ehsani','Dolati','RM','12134')";
         $con->exec($sql);
-        if ($con->lastInsertId() <= 0) {
+        $lastID2= $con->lastInsertId();
+        if ($con->lastInsertId() <= 0 || $lastID1== $lastID2 ) {
             $fallo = false;
         }
-        $sql = "INSERT into turista values(null,'María','Ehsani','Dolati','RM','12134')";
+        $sql = "INSERT into turista values('María','Ehsani','Dolati','RM','12134')";
         $con->exec($sql);
-        if ($con->lastInsertId() <= 0) {
+        $lastID3= $con->lastInsertId();
+        if ($con->lastInsertId() <= 0  || $lastID2== $lastID3) {
             $fallo = false;
         }
 
