@@ -19,7 +19,7 @@
         echo "Conectado<br>";
         $con->beginTransaction();
         $fallo = true;
-        $sql = "INSERT into turista values('Kimia','Ehsani','Dolati','RM','12134')";
+        $sql = "INSERT into turista values(null,'Kimia','Ehsani','Dolati','RM','12134')";
         $con->exec($sql);
         if ($con->lastInsertId() <= 0) {
             $fallo = false;
